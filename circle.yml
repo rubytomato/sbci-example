@@ -1,0 +1,6 @@
+machine:
+  java:
+    version: oraclejdk8
+  environment:
+    JAVA_OPTS: -Xms256m -Xmx512m
+  timezone: Asia/Tokyo

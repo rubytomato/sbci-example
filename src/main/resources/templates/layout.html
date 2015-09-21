@@ -1,0 +1,46 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">sbci-example</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="/vendor/bootstrap-3.3.5/css/bootstrap.min.css" th:href="@{/vendor/bootstrap-3.3.5/css/bootstrap.min.css}" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- container start -->
+  <div class="container">
+
+    <div class="page-header">
+      <h1>header</h1>
+    </div>
+
+    <!-- navi start -->
+    <div class="row navi">
+      <div class="col-md-12">
+        <ul class="nav nav-pills">
+          <li role="presentation"><a href="/content1" th:href="@{/content1}">content1</a></li>
+          <li role="presentation"><a href="/content2" th:href="@{/content2}">content2</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- navi end -->
+
+    <!-- contents -->
+    <div layout:fragment="partial1" th:remove="tag"></div>
+
+    <div class="page-footer">
+      <h3>footer</h3>
+    </div>
+
+  </div>
+  <!-- container end -->
+
+  <script src="/vendor/jquery/jquery-1.11.3.js" th:src="@{/vendor/jquery/jquery-1.11.3.js}"></script>
+  <script src="/vendor/bootstrap-3.3.5/js/bootstrap.js" th:src="@{/vendor/bootstrap-3.3.5/js/bootstrap.js}"></script>
+</body>
+</html>
+
