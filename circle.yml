@@ -3,7 +3,7 @@ machine:
     version: oraclejdk8
   environment:
     JAVA_OPTS: -Xms256m -Xmx512m
-    log.dir: $CIRCLE_TEST_REPORTS/log
+    log.dir: $HOME/$CIRCLE_PROJECT_REPONAME/log
   timezone: Asia/Tokyo
 
 general:
@@ -19,7 +19,9 @@ database:
 
 test:
   pre:
-    - mkdir -p $CIRCLE_TEST_REPORTS/log/
+    - mkdir -p $HOME/$CIRCLE_PROJECT_REPONAME/log/
   post:
     - mkdir -p $CIRCLE_TEST_REPORTS/junit/
     - find . -type f -regex ".*/surefire-reports/*/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
+    - mkdir -p $CIRCLE_TEST_REPORTS/log/
+    - cp $HOME/$CIRCLE_PROJECT_REPONAME/log/*.log $CIRCLE_TEST_REPORTS/log/
