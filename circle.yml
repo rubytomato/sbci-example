@@ -4,3 +4,14 @@ machine:
   environment:
     JAVA_OPTS: -Xms256m -Xmx512m
   timezone: Asia/Tokyo
+
+general:
+  artifacts:
+    - "app/build/reports/tests"
+
+database:
+  post:
+    - mysql -u root < $HOME/$CIRCLE_PROJECT_REPONAME/src/main/resources/data/sql/00-database.sql
+    - mysql sample_db -u root < $HOME/$CIRCLE_PROJECT_REPONAME/src/main/resources/data/sql/01-schema.sql
+    - mysql sample_db -u root < $HOME/$CIRCLE_PROJECT_REPONAME/src/main/resources/data/sql/02-data-customer.sql
+    - mysql sample_db -u root < $HOME/$CIRCLE_PROJECT_REPONAME/src/main/resources/data/sql/03-data-orders.sql

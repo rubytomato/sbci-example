@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+  <ORDER id="1" order_number="10100" order_date="2011-01-06" required_date="2011-01-13" shipped_date="2011-01-10" status="Shipped" comments="" customer_number="363" />
+  <ORDER id="2" order_number="10101" order_date="2011-01-09" required_date="2011-01-18" shipped_date="2011-01-11" status="Shipped" comments="Check on availability." customer_number="128" />
+  <ORDER id="3" order_number="10102" order_date="2011-01-10" required_date="2011-01-18" shipped_date="2011-01-14" status="Shipped" comments="" customer_number="181" />
+</dataset>

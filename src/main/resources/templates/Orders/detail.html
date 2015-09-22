@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+  <title>detail</title>
+  <meta name="keywords" content="content1" />
+  <meta name="description" content="content1" />
+</head>
+<body>
+
+  <!-- container -->
+  <div class="container">
+
+    <div layout:fragment="partial1">
+    <!-- partial1 start -->
+    <div class="row">
+      <div class="col-md-12 well">
+        <h3>detail - contents</h3>
+
+        <table class="table" th:if="${order}" th:object="${order}">
+          <caption>order</caption>
+          <tbody>
+            <tr>
+              <th class="field-label col-xs-3 active">id</th>
+              <td class="col-md-9" th:text="*{id}">id</td>
+            </tr>
+            <tr>
+              <th class="field-label col-xs-3 active">order Number</th>
+              <td class="col-md-9" th:text="*{orderNumber}">orderNumber</td>
+            </tr>
+            <tr>
+              <th class="field-label col-xs-3 active">order Date</th>
+              <td class="col-md-9" th:text="*{#vhd.format(orderDate)}">orderDate</td>
+            </tr>
+            <tr>
+              <th class="field-label col-xs-3 active">required Date</th>
+              <td class="col-md-9" th:text="*{#vhd.format(requiredDate)}">requiredDate</td>
+            </tr>
+            <tr>
+              <th class="field-label col-xs-3 active">shipped Date</th>
+              <td class="col-md-9" th:text="*{#vhd.format(shippedDate)}">shippedDate</td>
+            </tr>
+            <tr>
+              <th class="field-label col-xs-3 active">status</th>
+              <td class="col-md-9" th:text="*{status}">status</td>
+            </tr>
+            <tr>
+              <th class="field-label col-xs-3 active">comments</th>
+              <td class="col-md-9" th:text="*{comments}">comments</td>
+            </tr>
+            <tr>
+              <th class="field-label col-xs-3 active">customer Number</th>
+              <td class="col-md-9" th:text="*{customerNumber}">customerNumber</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+    <!-- partial1 end -->
+    </div>
+
+  </div>
+  <!-- container -->
+
+</body>
+</html>

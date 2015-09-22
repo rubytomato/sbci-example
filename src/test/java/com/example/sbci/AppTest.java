@@ -1,38 +1,24 @@
 package com.example.sbci;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import static org.junit.Assert.*;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
+import org.junit.Rule;
+import org.junit.Test;
+import org.springframework.boot.test.OutputCapture;
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
+public class AppTest {
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
-    }
+  @Rule
+  public OutputCapture outputCapture = new OutputCapture();
+
+  @Test
+  public void testCommandLineOverrides() throws Exception {
+      // 標準のPort番号(8080)以外で起動して、"Started Application" のメッセージが出力されるかテストする
+      App.main(new String[] {"--server.port=8081"});
+      String output = this.outputCapture.toString();
+      assertTrue(output, output.contains("Started App"));
+      // Exceptionが出力されていないかテストする
+      assertFalse(output, output.contains("Exception"));
+  }
+
 }
