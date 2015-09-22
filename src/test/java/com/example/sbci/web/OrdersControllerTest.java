@@ -45,10 +45,16 @@ public class OrdersControllerTest {
 
   @Test
   public void testDetailGet_Ok() throws Exception {
-    this.mvc.perform(get("/orders/detail/1"))
+    this.mvc.perform(get("/orders/detail/100"))
     .andExpect(status().isOk())
     .andExpect(content().contentType("text/html;charset=UTF-8"))
     .andExpect(content().string(containsString("<h3>detail - contents</h3>")));
+  }
+
+  @Test
+  public void testDetailGet_NotFound() throws Exception {
+    this.mvc.perform(get("/orders/notfound"))
+    .andExpect(status().is4xxClientError());
   }
 
 }

@@ -5,10 +5,16 @@ machine:
     JAVA_OPTS: -Xms256m -Xmx512m
     log.dir: $HOME/$CIRCLE_PROJECT_REPONAME/log
   timezone: Asia/Tokyo
+  pre:
+    - now = "$(date +'%d/%m/%Y')"
+    - echo "Current date $now"
+  post:
+    - echo date
 
 general:
   artifacts:
     - "target/surefire-reports"
+    - "target/site"
 
 database:
   post:
@@ -20,6 +26,8 @@ database:
 test:
   pre:
     - mkdir -p $HOME/$CIRCLE_PROJECT_REPONAME/log/
+  override:
+    - mvn clean site
   post:
     - mkdir -p $CIRCLE_TEST_REPORTS/junit/
     - find . -type f -regex ".*/surefire-reports/*/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
