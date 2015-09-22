@@ -6,9 +6,9 @@ machine:
     log.dir: $HOME/$CIRCLE_PROJECT_REPONAME/log
   timezone: Asia/Tokyo
   pre:
-    - echo "Current date $(date +%Y/%m/%d)"
+    - echo "pre date $(date)"
   post:
-    - echo "Current date $(date)"
+    - echo "post date $(date)"
 
 general:
   artifacts:
@@ -21,10 +21,12 @@ database:
     - mysql sample_db -u root < $HOME/$CIRCLE_PROJECT_REPONAME/src/main/resources/data/sql/01-schema.sql
     - mysql sample_db -u root < $HOME/$CIRCLE_PROJECT_REPONAME/src/main/resources/data/sql/02-data-customer.sql
     - mysql sample_db -u root < $HOME/$CIRCLE_PROJECT_REPONAME/src/main/resources/data/sql/03-data-orders.sql
+    - mysql sample_db -u root < $HOME/$CIRCLE_PROJECT_REPONAME/src/main/resources/data/sql/04-data-order_detail.sql
+    - mysql sample_db -u root < $HOME/$CIRCLE_PROJECT_REPONAME/src/main/resources/data/sql/05-data-payment.sql
+    - mysql sample_db -u root < $HOME/$CIRCLE_PROJECT_REPONAME/src/main/resources/data/sql/06-data-product.sql
+    - mysql sample_db -u root < $HOME/$CIRCLE_PROJECT_REPONAME/src/main/resources/data/sql/07-data-product_line.sql
 
 test:
-  pre:
-    - mkdir -p $HOME/$CIRCLE_PROJECT_REPONAME/log/
   override:
     - mvn clean site
   post:

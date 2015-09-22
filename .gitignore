@@ -1,6 +1,6 @@
 /target/
 /.settings/
-/log/
+/log/*.log
 .project
 .classpath
 
