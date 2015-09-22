@@ -1,10 +1,8 @@
 package com.example.sbci.web;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.Matchers.containsString;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.hamcrest.Matchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -22,7 +20,7 @@ import com.example.sbci.App;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = App.class)
 @WebAppConfiguration
-public class OrdersControllerTest {
+public class CustomerControllerTest {
 
   @Autowired
   private WebApplicationContext context;
@@ -31,24 +29,15 @@ public class OrdersControllerTest {
 
   @Before
   public void before() throws Exception {
-    //this.mvc = MockMvcBuilders.standaloneSetup(new IndexController()).build();
     this.mvc = MockMvcBuilders.webAppContextSetup(this.context).build();
   }
 
   @Test
   public void testIndexGet_Ok() throws Exception {
-    this.mvc.perform(get("/orders"))
+    this.mvc.perform(get("/customer"))
        .andExpect(status().isOk())
        .andExpect(content().contentType("text/html;charset=UTF-8"))
-       .andExpect(content().string(containsString("<title>sbci-example - orders</title>")));
-  }
-
-  @Test
-  public void testDetailGet_Ok() throws Exception {
-    this.mvc.perform(get("/orders/detail/1"))
-    .andExpect(status().isOk())
-    .andExpect(content().contentType("text/html;charset=UTF-8"))
-    .andExpect(content().string(containsString("<h3>detail - contents</h3>")));
+       .andExpect(content().string(containsString("<title>sbci-example - customer</title>")));
   }
 
 }

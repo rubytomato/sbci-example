@@ -1,5 +1,6 @@
 package com.example.sbci.repository;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -14,7 +15,12 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "payment")
-public class Payment {
+public class Payment implements Serializable {
+
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 2761800112299753537L;
 
   @Id
   @Column(name="id")

@@ -3,15 +3,6 @@ package com.example.sbci.repository;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 
-import java.lang.management.ManagementFactory;
-import java.util.List;
-import java.util.Set;
-
-import javax.management.MBeanServer;
-import javax.management.MBeanServerFactory;
-import javax.management.ObjectInstance;
-import javax.management.ObjectName;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -60,8 +51,7 @@ public class OrdersRepositoryTest {
     assertThat("execute query", true);
   }
 
-  //org.apache.tomcat.jdbc.pool.jmx:name=dataSourceMBean,type=ConnectionPool
-  //com.example.sbci:type=ConnectionPool,*
+/*
   public static final String OBJ_NAME = "org.apache.tomcat.jdbc.pool.jmx:name=dataSourceMBean,type=ConnectionPool";
 
   @Test
@@ -85,5 +75,6 @@ public class OrdersRepositoryTest {
     //assertThat(ManagementFactory.getPlatformMBeanServer().queryMBeans(new ObjectName(OBJ_NAME), null).size(), is(1));
     assertThat("jmxTest", true);
   }
+*/
 
 }

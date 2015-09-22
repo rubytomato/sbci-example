@@ -1,6 +1,5 @@
 package com.example.sbci.web;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -32,11 +31,9 @@ public class OrdersController {
   public String index(Model model) {
     logger.debug("OrdersController:[index] Passing through...");
 
-    List<Orders> list = new ArrayList<>();
+    List<Orders> result = ordersRepository.findAll();
 
-    list = ordersRepository.findAll();
-
-    model.addAttribute("list", list);
+    model.addAttribute("result", result);
 
     return "Orders/index";
   }

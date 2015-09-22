@@ -1,5 +1,6 @@
 package com.example.sbci.repository;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
@@ -11,10 +12,14 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "customer")
-public class Customer {
+public class Customer implements Serializable {
+
+  /**
+   * 
+   */
+  private static final long serialVersionUID = -5891156135120747724L;
 
   @Id
-  @Column(name="id")
   @GeneratedValue(strategy=GenerationType.IDENTITY)
   private Long id;
   @Column(name="customer_number", nullable=false)

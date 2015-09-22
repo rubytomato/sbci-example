@@ -1,5 +1,7 @@
 package com.example.sbci.repository;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +11,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "product_Line")
-public class ProductLine {
+public class ProductLine implements Serializable {
+
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 6508982287447536177L;
 
   @Id
   @Column(name="id")
