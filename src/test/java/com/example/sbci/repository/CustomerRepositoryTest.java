@@ -29,9 +29,18 @@ public class CustomerRepositoryTest {
 
   @Test
   public void executeQueryFindOne() {
-    Customer customer = customerRepository.findOne(126L);
+    Long id = 122L;
+    Customer customer = customerRepository.findOne(id);
     assertThat(customer, notNullValue());
-    assertThat(customer.getCustomerNumber(), is(496L));
+    assertThat(customer.getId(), is(id));
+  }
+
+  @Test
+  public void executeQueryFindByPk() {
+    Long customerNumber = 496L;
+    Customer customer = customerRepository.findByPk(customerNumber);
+    assertThat(customer, notNullValue());
+    assertThat(customer.getCustomerNumber(), is(customerNumber));
   }
 
   @Test

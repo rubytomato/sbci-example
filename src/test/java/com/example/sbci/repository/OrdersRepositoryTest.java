@@ -41,14 +41,18 @@ public class OrdersRepositoryTest {
 
   @Test
   public void executeQueryFindOne() {
-    Orders order = orderRepository.findOne(326L);
+    Long id = 326L;
+    Orders order = orderRepository.findOne(id);
     assertThat(order, notNullValue());
-    assertThat(order.getOrderNumber(), is(10425L));
+    assertThat(order.getId(), is(id));
   }
 
   @Test
-  public void dummy() {
-    assertThat("execute query", true);
+  public void executeQueryFindByPk() {
+    Long orderNumber = 10425L;
+    Orders order = orderRepository.findByPk(orderNumber);
+    assertThat(order, notNullValue());
+    assertThat(order.getOrderNumber(), is(orderNumber));
   }
 
 /*

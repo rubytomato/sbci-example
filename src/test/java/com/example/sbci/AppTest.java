@@ -1,5 +1,6 @@
 package com.example.sbci;
 
+import static org.hamcrest.MatcherAssert.*;
 import static org.junit.Assert.*;
 
 import org.junit.Rule;
@@ -19,6 +20,11 @@ public class AppTest {
     assertTrue(output, output.contains("Started App"));
     // Exceptionが出力されていないかテストする
     assertFalse(output, output.contains("Exception"));
+  }
+
+  @Test
+  public void dummy() {
+    assertThat("dummy test", true);
   }
 
 }
