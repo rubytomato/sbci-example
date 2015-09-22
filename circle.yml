@@ -6,10 +6,9 @@ machine:
     log.dir: $HOME/$CIRCLE_PROJECT_REPONAME/log
   timezone: Asia/Tokyo
   pre:
-    - now = "$(date +'%d/%m/%Y')"
-    - echo "Current date $now"
+    - echo "Current date $(date +%Y/%m/%d)"
   post:
-    - echo date
+    - echo "Current date $(date)"
 
 general:
   artifacts:
