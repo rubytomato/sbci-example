@@ -10,17 +10,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 @Entity
 @Table(name = "customer")
 public class Customer implements Serializable {
 
-  /**
-   * 
-   */
   private static final long serialVersionUID = -5891156135120747724L;
 
   @Id
-  @GeneratedValue(strategy=GenerationType.IDENTITY)
+  @GeneratedValue(strategy=GenerationType.AUTO)
   private Long id;
   @Column(name="customer_number", nullable=false)
   private Long customerNumber;
@@ -132,6 +134,19 @@ public class Customer implements Serializable {
   }
   public void setCreditLimit(BigDecimal creditLimit) {
     this.creditLimit = creditLimit;
+  }
+
+  @Override
+  public int hashCode() {
+    return HashCodeBuilder.reflectionHashCode(this);
+  }
+  @Override
+  public boolean equals(Object obj) {
+    return EqualsBuilder.reflectionEquals(this, obj);
+  }
+  @Override
+  public String toString() {
+    return ToStringBuilder.reflectionToString(this, ToStringStyle.DEFAULT_STYLE);
   }
 
 }

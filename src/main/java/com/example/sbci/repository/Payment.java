@@ -17,14 +17,10 @@ import javax.persistence.TemporalType;
 @Table(name = "payment")
 public class Payment implements Serializable {
 
-  /**
-   * 
-   */
   private static final long serialVersionUID = 2761800112299753537L;
 
   @Id
-  @Column(name="id")
-  @GeneratedValue(strategy=GenerationType.IDENTITY)
+  @GeneratedValue(strategy=GenerationType.AUTO)
   private Long id;
   @Column(name="customer_number", nullable=false)
   private Long customerNumber;

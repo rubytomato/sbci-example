@@ -5,10 +5,6 @@ machine:
     JAVA_OPTS: -Xms256m -Xmx512m
     log.dir: $HOME/$CIRCLE_PROJECT_REPONAME/log
   timezone: Asia/Tokyo
-  pre:
-    - echo "pre date $(date)"
-  post:
-    - echo "post date $(date)"
 
 general:
   artifacts:

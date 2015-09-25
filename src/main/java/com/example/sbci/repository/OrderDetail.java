@@ -14,14 +14,10 @@ import javax.persistence.Table;
 @Table(name = "order_detail")
 public class OrderDetail implements Serializable {
 
-  /**
-   * 
-   */
   private static final long serialVersionUID = 1890789792110128467L;
 
   @Id
-  @Column(name="id")
-  @GeneratedValue(strategy=GenerationType.IDENTITY)
+  @GeneratedValue(strategy=GenerationType.AUTO)
   private Long id;
   @Column(name="order_number", nullable=false)
   private Long orderNumber;
