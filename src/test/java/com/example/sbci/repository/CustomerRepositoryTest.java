@@ -3,6 +3,8 @@ package com.example.sbci.repository;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.example.sbci.App;
+import com.example.sbci.domain.Customer;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = App.class)
@@ -42,11 +45,35 @@ public class CustomerRepositoryTest {
   }
 
   @Test
+  public void executeQueryFindAll() {
+    List<Customer> list = customerRepository.findAll();
+    assertThat(list, notNullValue());
+    assertThat(list.size(), is(122));
+  }
+
+  @Test
   public void executeQueryFindByNameLike() {
     Sort sort = new Sort("customerName");
     String customerName = "%Classic%";
-    Iterable<Customer> list = customerRepository.findByCustomerNameLike(customerName, sort);
+    List<Customer> list = customerRepository.findByCustomerNameLike(customerName, sort);
     assertThat(list, notNullValue());
+    assertThat(list.size(), is(5));
+  }
+
+  @Test
+  public void executeQueryFindByNameLike2() {
+    String customerName = "%Classic%";
+    List<Customer> list = customerRepository.findByCustomerNameLike(customerName);
+    assertThat(list, notNullValue());
+    assertThat(list.size(), is(5));
+  }
+
+  @Test
+  public void executeQueryFindByName() {
+    String customerName = "Classic Legends Inc.";
+    List<Customer> list = customerRepository.findByCustomerName(customerName);
+    assertThat(list, notNullValue());
+    assertThat(list.size(), is(1));
   }
 
 }

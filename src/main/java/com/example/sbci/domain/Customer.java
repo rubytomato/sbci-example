@@ -1,4 +1,4 @@
-package com.example.sbci.repository;
+package com.example.sbci.domain;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

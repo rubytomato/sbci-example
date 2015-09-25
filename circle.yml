@@ -10,6 +10,7 @@ general:
   artifacts:
     - "target/surefire-reports"
     - "target/site"
+    - "log"
 
 database:
   post:
@@ -25,8 +26,3 @@ database:
 test:
   override:
     - mvn clean site
-  post:
-    - mkdir -p $CIRCLE_TEST_REPORTS/junit/
-    - find . -type f -regex ".*/surefire-reports/*/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
-    - mkdir -p $CIRCLE_TEST_REPORTS/log/
-    - cp $HOME/$CIRCLE_PROJECT_REPONAME/log/*.log $CIRCLE_TEST_REPORTS/log/

@@ -12,6 +12,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.example.sbci.App;
+import com.example.sbci.domain.Product;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = App.class)
@@ -32,6 +33,21 @@ public class ProductRepositoryTest {
     Product product = productRepository.findOne(id);
     assertThat(product, notNullValue());
     assertThat(product.getId(), is(id));
+  }
+
+  @Test
+  public void executeQueryFindByPk() {
+    String  productCode = "S700_4002";
+    Product product = productRepository.findByPk(productCode);
+    assertThat(product, notNullValue());
+    assertThat(product.getProductCode(), is(productCode));
+  }
+
+  @Test
+  public void executeQueryFindAll() {
+    List<Product> list = productRepository.findAll();
+    assertThat(list, notNullValue());
+    assertThat(list.size(), is(110));
   }
 
   @Test

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.example.sbci.repository.Customer;
+import com.example.sbci.domain.Customer;
 import com.example.sbci.service.CustomerService;
 
 @Controller

@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
@@ -15,7 +16,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.example.sbci.App;
-import com.example.sbci.repository.Customer;
+import com.example.sbci.domain.Customer;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = App.class)
@@ -25,11 +26,12 @@ public class CustomerServiceTest {
   CustomerService customerService;
 
   Customer customer1;
+  Customer customer2;
+  Customer customer3;
 
   @Before
   public void setup() {
     customer1 = new Customer();
-    //customer1.setId(999991L);
     customer1.setCustomerNumber(496L);
     customer1.setCustomerName("Kelly's Gift Shop");
     customer1.setContactFirstName("Snowden");
@@ -44,7 +46,36 @@ public class CustomerServiceTest {
     customer1.setSalesRepEmployeeNumber(1612L);
     customer1.setCreditLimit(new BigDecimal("110000.00"));
 
-    clear();
+    customer2 = new Customer();
+    customer2.setCustomerNumber(489L);
+    customer2.setCustomerName("Double Decker Gift Stores, Ltd");
+    customer2.setContactFirstName("Smith");
+    customer2.setContactLastName("Thomas");
+    customer2.setPhone("(171) 555-7555");
+    customer2.setAddressLine1("120 Hanover Sq.");
+    customer2.setAddressLine2(null);
+    customer2.setCity("London");
+    customer2.setState(null);
+    customer2.setPostalCode("WA1 1DP");
+    customer2.setCountry("UK");
+    customer2.setSalesRepEmployeeNumber(1501L);
+    customer2.setCreditLimit(new BigDecimal("43300.00"));
+
+    customer3 = new Customer();
+    customer3.setCustomerNumber(495L);
+    customer3.setCustomerName("Diecast Collectables");
+    customer3.setContactFirstName("Franco");
+    customer3.setContactLastName("Valarie");
+    customer3.setPhone("6175552555");
+    customer3.setAddressLine1("6251 Ingle Ln.");
+    customer3.setAddressLine2(null);
+    customer3.setCity("Boston");
+    customer3.setState("MA");
+    customer3.setPostalCode("51003");
+    customer3.setCountry("USA");
+    customer3.setSalesRepEmployeeNumber(1188L);
+    customer3.setCreditLimit(new BigDecimal("85100.00"));
+
   }
 
   @After
@@ -53,22 +84,32 @@ public class CustomerServiceTest {
   }
 
   private void clear() {
-    customerService.removeAll(Arrays.asList(customer1));
+    customerService.removeAll(Arrays.asList(customer1, customer2, customer3));
   }
 
   @Test
   public void save_ok() {
-
     Customer result = customerService.save(customer1);
-    System.out.println(result.getId());
-
+    assertThat(result, notNullValue());
     Customer actual = customerService.findById(result.getId());
-    System.out.println(actual.getId());
-
-    customer1.setId(actual.getId());
-
     assertThat(actual, is(result));
 
+    customer1.setId(actual.getId());
   }
+
+  @Test
+  public void saveAll_ok() {
+    List<Customer> customers = customerService.saveAll(Arrays.asList(customer2, customer3));
+    assertThat(customers, notNullValue());
+
+    Customer actual2 = customerService.findById(customers.get(0).getId());
+    Customer actual3 = customerService.findById(customers.get(1).getId());
+    assertThat(actual2, is(customers.get(0)));
+    assertThat(actual3, is(customers.get(1)));
+
+    customer2.setId(actual2.getId());
+    customer3.setId(actual3.getId());
+  }
+
 
 }

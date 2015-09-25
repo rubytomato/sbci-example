@@ -20,6 +20,10 @@ spring:
       show-sql: true
       ddl-auto: update
     database-platform: org.hibernate.dialect.MySQLDialect
+  data:
+    jpa:
+      repositories:
+        enabled: true
 # INTERNATIONALIZATION (MessageSourceAutoConfiguration)
   messages:
     basename: messages

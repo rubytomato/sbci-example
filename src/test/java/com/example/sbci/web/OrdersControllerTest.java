@@ -31,7 +31,6 @@ public class OrdersControllerTest {
 
   @Before
   public void before() throws Exception {
-    //this.mvc = MockMvcBuilders.standaloneSetup(new IndexController()).build();
     this.mvc = MockMvcBuilders.webAppContextSetup(this.context).build();
   }
 

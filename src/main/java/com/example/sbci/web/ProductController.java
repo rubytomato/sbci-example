@@ -9,16 +9,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.example.sbci.domain.Orders;
-import com.example.sbci.service.OrdersService;
+import com.example.sbci.domain.Product;
+import com.example.sbci.service.ProductService;
 
 @Controller
-@RequestMapping(value = "/orders")
-public class OrdersController {
-  final static Logger logger = LoggerFactory.getLogger(OrdersController.class);
+@RequestMapping(value = "/product")
+public class ProductController {
+  final static Logger logger = LoggerFactory.getLogger(ProductController.class);
 
   @Autowired
-  OrdersService ordersService;
+  ProductService productService;
 
   @RequestMapping(method = RequestMethod.GET)
   public String _index(Model model) {
@@ -27,18 +27,18 @@ public class OrdersController {
 
   @RequestMapping(value = "/", method = RequestMethod.GET)
   public String index(Model model) {
-    logger.debug("OrdersController:[index] Passing through...");
-    Iterable<Orders> result = ordersService.findAll(1, 10, "id");
+    logger.debug("ProductController:[index] Passing through...");
+    Iterable<Product> result = productService.findAll(1, 10, "id");
     model.addAttribute("result", result);
-    return "Orders/index";
+    return "Product/index";
   }
 
   @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
   public String detail(@PathVariable("id") Long id, Model model) {
-    logger.debug("OrdersController:[detail] Passing through...");
-    Orders order = ordersService.findById(id);
-    model.addAttribute("order", order);
-    return "Orders/detail";
+    logger.debug("ProductController:[detail] Passing through...");
+    Product product = productService.findById(id);
+    model.addAttribute("product", product);
+    return "Product/detail";
   }
 
 }

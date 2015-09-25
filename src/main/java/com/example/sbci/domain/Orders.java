@@ -1,4 +1,4 @@
-package com.example.sbci.repository;
+package com.example.sbci.domain;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -43,6 +43,24 @@ public class Orders implements Serializable {
   private String comments;
   @Column(name="customer_number")
   private Long customerNumber;
+
+
+  public Orders(){}
+
+
+/*  public Orders(Long id, Long orderNumber, Date orderDate, Date requiredDate,
+      Date shippedDate, String status, String comments, Long customerNumber) {
+    super();
+    this.id = id;
+    this.orderNumber = orderNumber;
+    this.orderDate = orderDate;
+    this.requiredDate = requiredDate;
+    this.shippedDate = shippedDate;
+    this.status = status;
+    this.comments = comments;
+    this.customerNumber = customerNumber;
+  }
+*/
 
   public Long getId() {
     return id;

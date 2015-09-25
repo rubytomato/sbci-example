@@ -34,6 +34,7 @@
               <th>country</th>
               <th>sales Rep Employee Number</th>
               <th>credit Limit</th>
+              <th>detail</th>
             </tr>
           </thead>
           <tbody>
@@ -50,6 +51,9 @@
               <td th:text="*{country}">country</td>
               <td th:text="*{salesRepEmployeeNumber}">salesRepEmployeeNumber</td>
               <td th:text="*{creditLimit}">creditLimit</td>
+              <td>
+                <a class="btn btn-default" href="/customer/detail/0" th:href="@{/customer/detail/} + *{id}">detail</a>
+              </td>
             </tr>
           </tbody>
         </table>

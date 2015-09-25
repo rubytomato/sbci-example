@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+  <title>payment</title>
+  <meta name="keywords" content="payment" />
+  <meta name="description" content="payment" />
+</head>
+<body>
+
+  <!-- container -->
+  <div class="container">
+
+    <div layout:fragment="partial1">
+    <!-- partial1 start -->
+    <div class="row">
+      <div class="col-md-12 well">
+        <h3>detail - contents</h3>
+
+        <table class="table" th:if="${payment}" th:object="${payment}">
+          <tbody>
+            <tr>
+              <th class="field-label col-xs-3 active">id</th>
+              <td class="col-md-9" th:text="*{id}">id</td>
+            </tr>
+            <tr>
+              <th class="field-label col-xs-3 active">customer Number</th>
+              <td class="col-md-9" th:text="*{customerNumber}">customerNumber</td>
+            </tr>
+            <tr>
+              <th class="field-label col-xs-3 active">check Number</th>
+              <td class="col-md-9" th:text="*{checkNumber}">checkNumber</td>
+            </tr>
+            <tr>
+              <th class="field-label col-xs-3 active">payment Date</th>
+              <td class="col-md-9" th:text="*{paymentDate}">paymentDate</td>
+            </tr>
+            <tr>
+              <th class="field-label col-xs-3 active">amount</th>
+              <td class="col-md-9" th:text="*{amount}">amount</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+    <!-- partial1 end -->
+    </div>
+
+  </div>
+  <!-- container -->
+
+</body>
+</html>
