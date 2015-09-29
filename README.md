@@ -1,8 +1,8 @@
 # 概要
 
-Spring-Bootを使用したWebアプリケーションをCircleCIでビルドするサンプルアプリケーションです。
-
 [![Circle CI](https://circleci.com/gh/rubytomato/sbci-example.svg?style=svg&circle-token=49c0c31ffa73506b2a2bb5351cfc2c37525610db)](https://circleci.com/gh/rubytomato/sbci-example)
+
+Spring-Bootを使用したWebアプリケーションをCircleCIでビルドするサンプルアプリケーションです。
 
 **環境**
 

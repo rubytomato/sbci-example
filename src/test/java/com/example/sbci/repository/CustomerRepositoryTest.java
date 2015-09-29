@@ -1,7 +1,7 @@
 package com.example.sbci.repository;
 
-import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.*;
 
 import java.util.List;
 

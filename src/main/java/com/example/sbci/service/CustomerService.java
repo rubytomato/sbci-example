@@ -7,7 +7,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,25 +42,21 @@ public class CustomerService implements Pagination {
     return customerRepository.findByCustomerNameLike(name, s);
   }
 
-  @Modifying
   @Transactional(rollbackFor = Exception.class, timeout = 3)
   public Customer save(final Customer customer) {
     return customerRepository.save(customer);
   }
 
-  @Modifying
   @Transactional(rollbackFor = Exception.class, timeout = 10)
   public List<Customer> saveAll(final Iterable<Customer> customers) {
     return customerRepository.save(customers);
   }
 
-  @Modifying
   @Transactional(rollbackFor = Exception.class, timeout = 3)
   public void remove(final Customer customer) {
     customerRepository.delete(customer);
   }
 
-  @Modifying
   @Transactional(rollbackFor = Exception.class, timeout = 10)
   public void removeAll(final Iterable<Customer> customers) {
     customerRepository.delete(customers);

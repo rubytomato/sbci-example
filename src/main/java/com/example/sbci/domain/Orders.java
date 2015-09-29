@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -24,13 +25,16 @@ public class Orders implements Serializable {
   private static final long serialVersionUID = 3744346731479843943L;
 
   @Id
-  @GeneratedValue(strategy=GenerationType.AUTO)
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
   private Long id;
+  @NotNull
   @Column(name="order_number", nullable=false)
   private Long orderNumber;
+  @NotNull
   @Temporal(TemporalType.DATE)
   @Column(name="order_date", nullable=false)
   private Date orderDate;
+  @NotNull
   @Temporal(TemporalType.DATE)
   @Column(name="required_date", nullable=false)
   private Date requiredDate;

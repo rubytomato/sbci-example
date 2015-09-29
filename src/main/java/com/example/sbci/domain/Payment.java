@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -25,15 +26,19 @@ public class Payment implements Serializable {
   private static final long serialVersionUID = 2761800112299753537L;
 
   @Id
-  @GeneratedValue(strategy=GenerationType.AUTO)
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
   private Long id;
+  @NotNull
   @Column(name="customer_number", nullable=false)
   private Long customerNumber;
+  @NotNull
   @Column(name="check_number", nullable=false)
   private String checkNumber;
+  @NotNull
   @Temporal(TemporalType.DATE)
   @Column(name="payment_date", nullable=false)
   private Date paymentDate;
+  @NotNull
   @Column(name="amount", nullable=false)
   private BigDecimal amount;
 

@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -22,14 +23,18 @@ public class Customer implements Serializable {
   private static final long serialVersionUID = -5891156135120747724L;
 
   @Id
-  @GeneratedValue(strategy=GenerationType.AUTO)
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
   private Long id;
+  @NotNull
   @Column(name="customer_number", nullable=false)
   private Long customerNumber;
+  @NotNull
   @Column(name="customer_name", nullable=false)
   private String customerName;
+  @NotNull
   @Column(name="contact_last_name", nullable=false)
   private String contactLastName;
+  @NotNull
   @Column(name="contact_first_name", nullable=false)
   private String contactFirstName;
   @Column(name="phone")

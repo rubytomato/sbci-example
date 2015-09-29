@@ -1,7 +1,7 @@
 package com.example.sbci.repository;
 
-import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.*;
 
 import java.util.Date;
 import java.util.List;
@@ -11,6 +11,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.sbci.App;
 import com.example.sbci.DateHelper;
@@ -59,6 +60,31 @@ public class OrdersRepositoryTest {
     List<Orders> list = orderRepository.findByOrderDateRange(from, to);
     assertThat(list, notNullValue());
     assertThat(list.size(), is(15));
+  }
+
+  @Test
+  @Transactional
+  public void executeUpdateComments() {
+    Long orderNumber = 10245L;
+
+    String c1 = "test update comment du3hB8ajwO";
+
+    Integer u1 = orderRepository.updateComments(orderNumber, c1);
+    assertThat(u1, is(1));
+
+    Orders o1 = orderRepository.findByPk(orderNumber);
+    assertThat(o1, notNullValue());
+    assertThat(o1.getComments(), is(c1));
+
+
+    String c2 = "test update comment vP49ayRjfy";
+
+    Integer u2 = orderRepository.updateComments(orderNumber, c2);
+    assertThat(u2, is(1));
+
+    Orders o2 = orderRepository.findByPk(orderNumber);
+    assertThat(o2, notNullValue());
+    assertThat(o2.getComments(), is(c2));
   }
 
 }

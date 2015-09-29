@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -22,16 +23,21 @@ public class Product implements Serializable {
   private static final long serialVersionUID = -3159956773743012953L;
 
   @Id
-  @GeneratedValue(strategy=GenerationType.AUTO)
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
   private Long id;
+  @NotNull
   @Column(name="product_code", nullable=false)
   private String productCode;
+  @NotNull
   @Column(name="product_name", nullable=false)
   private String productName;
+  @NotNull
   @Column(name="product_line", nullable=false)
   private String productLine;
+  @NotNull
   @Column(name="product_scale", nullable=false)
   private String productScale;
+  @NotNull
   @Column(name="product_vendor", nullable=false)
   private String productVendor;
   @Column(name="product_description")

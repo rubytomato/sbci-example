@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -22,16 +23,21 @@ public class OrderDetail implements Serializable {
   private static final long serialVersionUID = 1890789792110128467L;
 
   @Id
-  @GeneratedValue(strategy=GenerationType.AUTO)
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
   private Long id;
+  @NotNull
   @Column(name="order_number", nullable=false)
   private Long orderNumber;
+  @NotNull
   @Column(name="product_code", nullable=false)
   private String productCode;
+  @NotNull
   @Column(name="quantity_ordered", nullable=false)
   private Long quantityOrdered;
+  @NotNull
   @Column(name="price_each", nullable=false)
   private BigDecimal priceEach;
+  @NotNull
   @Column(name="order_line_number", nullable=false)
   private Integer orderLineNumber;
 

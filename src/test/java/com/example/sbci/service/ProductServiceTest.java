@@ -7,13 +7,15 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.validation.ValidationException;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.DataAccessException;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.example.sbci.App;
@@ -115,24 +117,26 @@ public class ProductServiceTest {
     product3.setId(actual3.getId());
   }
 
-  @Test(expected = DataIntegrityViolationException.class)
+  @Test(expected = ValidationException.class)
   public void save_null_ng() {
+    System.out.println("save_null_ng");
     try {
       productService.save(product4);
-    } catch (DataIntegrityViolationException e) {
-      System.out.println("DataIntegrityViolationException!!");
+    } catch (ValidationException e) {
+      System.out.println("ValidationException!!");
       System.out.println("message:" + e.getMessage());
       throw e;
     }
     org.junit.Assert.fail();
   }
 
-  @Test(expected = DataIntegrityViolationException.class)
+  @Test(expected = DataAccessException.class)
   public void save_too_long_ng() {
+    System.out.println("save_too_long_ng");
     try {
       productService.save(product5);
-    } catch (DataIntegrityViolationException e) {
-      System.out.println("DataIntegrityViolationException!!");
+    } catch (DataAccessException e) {
+      System.out.println("DataAccessException!!");
       System.out.println("message:" + e.getMessage());
       throw e;
     }

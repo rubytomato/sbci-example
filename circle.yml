@@ -2,8 +2,7 @@ machine:
   java:
     version: oraclejdk8
   environment:
-    JAVA_OPTS: -Xms256m -Xmx512m
-    log.dir: $HOME/$CIRCLE_PROJECT_REPONAME/log
+    JAVA_OPTS: -Xms512m -Xmx512m
   timezone: Asia/Tokyo
 
 general:

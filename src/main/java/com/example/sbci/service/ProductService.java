@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,25 +34,21 @@ public class ProductService implements Pagination {
     return productRepository.findAll(pager);
   }
 
-  @Modifying
   @Transactional(rollbackFor = Exception.class, timeout = 3)
   public Product save(final Product product) {
     return productRepository.save(product);
   }
 
-  @Modifying
   @Transactional(rollbackFor = Exception.class, timeout = 10)
   public List<Product> saveAll(final Iterable<Product> products) {
     return productRepository.save(products);
   }
 
-  @Modifying
   @Transactional(rollbackFor = Exception.class, timeout = 3)
   public void remove(final Product product) {
     productRepository.delete(product);
   }
 
-  @Modifying
   @Transactional(rollbackFor = Exception.class, timeout = 10)
   public void removeAll(final Iterable<Product> products) {
     productRepository.delete(products);

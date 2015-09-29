@@ -1,7 +1,7 @@
 package com.example.sbci.service;
 
+import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
 
 import java.math.BigDecimal;
 import java.util.Arrays;

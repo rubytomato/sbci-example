@@ -85,5 +85,30 @@ public class PaymentServiceTest {
     payment3.setId(actual3.getId());
   }
 
+  @Test
+  public void updateAmount_ok() {
+    Long customerNumber = 455L;
+    String  checkNumber = "IR662429";
+
+    BigDecimal a1 = new BigDecimal("32239.47");
+
+    Integer u1 = paymentService.updateAmount(customerNumber, checkNumber, a1);
+    assertThat(u1, is(1));
+
+    Payment p1 = paymentService.findByPk(customerNumber, checkNumber);
+    assertThat(p1, notNullValue());
+    assertThat(p1.getAmount(), is(a1));
+    System.out.println(p1.toString());
+
+    BigDecimal a2 = new BigDecimal("77777.88");
+
+    Integer u2 = paymentService.updateAmount(customerNumber, checkNumber, a2);
+    assertThat(u2, is(1));
+
+    Payment p2 = paymentService.findByPk(customerNumber, checkNumber);
+    assertThat(p2, notNullValue());
+    assertThat(p2.getAmount(), is(a2));
+    System.out.println(p2.toString());
+  }
 
 }

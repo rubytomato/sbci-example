@@ -1,10 +1,12 @@
 package com.example.sbci.service;
 
+import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
 
 import java.util.Arrays;
 import java.util.List;
+
+import javax.validation.ValidationException;
 
 import org.junit.After;
 import org.junit.Before;
@@ -12,7 +14,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.DataAccessException;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.example.sbci.App;
@@ -108,23 +110,23 @@ public class OrdersServiceTest {
     order3.setId(actual3.getId());
   }
 
-  @Test(expected = DataIntegrityViolationException.class)
+  @Test(expected = ValidationException.class)
   public void save_null_ng() {
     try {
       ordersService.save(order4);
-    } catch (DataIntegrityViolationException e) {
-      System.out.println("DataIntegrityViolationException!!");
+    } catch (ValidationException e) {
+      System.out.println("DataAccessException!!");
       System.out.println("message:" + e.getMessage());
       throw e;
     }
     org.junit.Assert.fail();
   }
 
-  @Test(expected = DataIntegrityViolationException.class)
+  @Test(expected = DataAccessException.class)
   public void save_too_long_ng() {
     try {
       ordersService.save(order5);
-    } catch (DataIntegrityViolationException e) {
+    } catch (DataAccessException e) {
       System.out.println("DataIntegrityViolationException!!");
       System.out.println("message:" + e.getMessage());
       throw e;
@@ -154,6 +156,32 @@ public class OrdersServiceTest {
     Orders order3 = ordersService.findById(orders.get(1).getId());
     assertThat(order2, nullValue());
     assertThat(order3, nullValue());
+  }
+
+  @Test
+  public void updateComments_ok() {
+    Long orderNumber = 10245L;
+
+    String c1 = "test update comment du3hB8ajwO";
+
+    Integer u1 = ordersService.updateComments(orderNumber, c1);
+    assertThat(u1, is(1));
+
+    Orders o1 = ordersService.findByPk(orderNumber);
+    assertThat(o1, notNullValue());
+    assertThat(o1.getComments(), is(c1));
+    System.out.println(o1.toString());
+
+    String c2 = "test update comment vP49ayRjfy";
+
+    Integer u2 = ordersService.updateComments(orderNumber, c2);
+    assertThat(u2, is(1));
+
+    Orders o2 = ordersService.findByPk(orderNumber);
+    assertThat(o2, notNullValue());
+    assertThat(o2.getComments(), is(c2));
+    System.out.println(o2.toString());
+
   }
 
 }

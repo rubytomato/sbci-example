@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -22,5 +23,9 @@ public interface OrdersRepository extends JpaRepository<Orders, Long> {
 
   @Query(name = "Orders.findByOrderDateRange")
   List<Orders> findByOrderDateRange(@Param("from") Date from, @Param("to") Date to);
+
+  @Modifying(clearAutomatically = true)
+  @Query(value = "update Orders o set o.comments = :comments where o.orderNumber = :orderNumber")
+  Integer updateComments(@Param("orderNumber") Long orderNumber, @Param("comments") String comments);
 
 }
