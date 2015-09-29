@@ -1,4 +1,4 @@
-machine:
+machine:                               # (1)
   java:
     version: oraclejdk8
   environment:
@@ -6,12 +6,15 @@ machine:
   timezone: Asia/Tokyo
 
 general:
-  artifacts:
+  branches:                             # (2)
+    only:
+      - master
+  artifacts:                            # (3)
     - "target/surefire-reports"
     - "target/site"
     - "log"
 
-database:
+database:                               # (4)
   post:
     - mysql -u root < $HOME/$CIRCLE_PROJECT_REPONAME/src/main/resources/data/sql/00-database.sql
     - mysql sample_db -u root < $HOME/$CIRCLE_PROJECT_REPONAME/src/main/resources/data/sql/01-schema.sql
@@ -23,5 +26,5 @@ database:
     - mysql sample_db -u root < $HOME/$CIRCLE_PROJECT_REPONAME/src/main/resources/data/sql/07-data-product_line.sql
 
 test:
-  override:
-    - mvn clean site
+  override:                              # (5)
+    - mvn site

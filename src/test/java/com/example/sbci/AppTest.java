@@ -10,7 +10,7 @@ import org.springframework.boot.test.OutputCapture;
 public class AppTest {
 
   @Rule
-  public OutputCapture outputCapture = new OutputCapture();
+  OutputCapture outputCapture = new OutputCapture();
 
   @Test
   public void testCommandLineOverrides() throws Exception {

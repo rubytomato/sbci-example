@@ -170,7 +170,7 @@ public class OrdersServiceTest {
     Orders o1 = ordersService.findByPk(orderNumber);
     assertThat(o1, notNullValue());
     assertThat(o1.getComments(), is(c1));
-    System.out.println(o1.toString());
+
 
     String c2 = "test update comment vP49ayRjfy";
 
@@ -180,7 +180,6 @@ public class OrdersServiceTest {
     Orders o2 = ordersService.findByPk(orderNumber);
     assertThat(o2, notNullValue());
     assertThat(o2.getComments(), is(c2));
-    System.out.println(o2.toString());
 
   }
 
